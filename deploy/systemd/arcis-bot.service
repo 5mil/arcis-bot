@@ -1,0 +1,23 @@
+[Unit]
+Description=Arcis Bot (Visio tier, persistent hearth)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=arcis
+Group=arcis
+WorkingDirectory=/home/arcis/arcis
+Environment=HEARTH=/home/arcis/arcis-hearth
+ExecStart=/home/arcis/arcis/zig-out/bin/arcis --tier visio --port 9090 \
+  --model /home/arcis/arcis/models/gguf/DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/arcis/arcis-hearth /home/arcis/arcis/models
+
+[Install]
+WantedBy=multi-user.target

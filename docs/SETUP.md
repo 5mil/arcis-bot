@@ -1,6 +1,6 @@
 # Arcis Bot — Comprehensive Setup Guide
 
-This guide turns the Arcis engine into a long-lived local bot on a PC while preserving every part of the Arcis philosophy.
+This guide turns the Arcis engine into a long-lived local bot on a PC (or see [VPS.md](VPS.md) for a remote machine) while preserving every part of the Arcis philosophy.
 
 ## Prerequisites
 
@@ -22,12 +22,14 @@ This guide turns the Arcis engine into a long-lived local bot on a PC while pres
    zig build
    ```
 3. Create a hearth directory (e.g. `~/arcis-hearth`) and point the daemon at it.
-4. Run as a daemon (use the existing `deploy/systemd` unit or a simple supervisor):
+4. Run as a daemon (use the unit in `deploy/systemd/arcis-bot.service` or the parent engine’s unit):
    ```sh
    ./zig-out/bin/arcis --tier visio --port 9090 \
      --model models/gguf/DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf
    ```
 5. On start, the session loads Catalog, NameStore, ConceptStore, and agent memory from the hearth. On clean shutdown it flushes them.
+
+For a full VPS walkthrough (Zig install, systemd, firewall, SSH tunnel) see [VPS.md](VPS.md).
 
 ## 2. Name and ontology place
 
@@ -94,6 +96,6 @@ Extend the existing dashboard views (or add a tiny CLI) to show:
 
 All steps reuse `src/agents`, `src/workflow`, `src/naming`, `src/ontology`, and the session layer already present in the parent engine. No new runtime is introduced.
 
-## House-box sequence
+## House-box / VPS sequence
 
-See the parent engine’s `docs/INSTRUCTIONS.md` for the full desk + Moodle + library sequence. This bot simply adds the persistent agent layer on top of that running daemon.
+See the parent engine’s `docs/INSTRUCTIONS.md` for the full desk + Moodle + library sequence. This bot simply adds the persistent agent layer on top of that running daemon. For a remote host follow [VPS.md](VPS.md).
