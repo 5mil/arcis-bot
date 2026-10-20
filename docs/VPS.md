@@ -28,15 +28,19 @@ su - arcis
 
 ## 2. Install Zig
 
+Prefer the current stable release. The parent Arcis engine documents **Zig 0.14.0 or later** as the minimum; newer tagged releases (including 0.17) are recommended for fresh installs.
+
 ```sh
-# Example for Zig 0.14.x — check ziglang.org for the current tarball
+# Current stable as of Oct 2026 — check https://ziglang.org/download/ for the latest tarball
 cd /tmp
-curl -LO https://ziglang.org/download/0.14.0/zig-linux-x86_64-0.14.0.tar.xz
-tar -xf zig-linux-x86_64-0.14.0.tar.xz
-sudo mv zig-linux-x86_64-0.14.0 /opt/zig
+curl -LO https://ziglang.org/download/0.17.0/zig-x86_64-linux-0.17.0.tar.xz
+tar -xf zig-x86_64-linux-0.17.0.tar.xz
+sudo mv zig-x86_64-linux-0.17.0 /opt/zig
 sudo ln -sf /opt/zig/zig /usr/local/bin/zig
 zig version
 ```
+
+(Adjust the filename if the download page shows a different arch or a newer patch.)
 
 ## 3. Clone and build
 
