@@ -4,7 +4,7 @@ This guide turns the Arcis engine into a long-lived local bot on a PC (or see [V
 
 ## Prerequisites
 
-- Zig 0.14+ 
+- Zig 0.14.0 or later (parent Arcis minimum). Prefer the current stable (0.17.0 as of Oct 2026) for new installs.
 - A local clone of the parent engine: `https://github.com/5mil/arcis`
 - An openly licensed GGUF model (e.g. DeepSeek-R1-Distill-Qwen-1.5B Q4)
 - A directory that will serve as the hearth (persistent state)
