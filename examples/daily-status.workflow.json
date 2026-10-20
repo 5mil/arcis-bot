@@ -1,0 +1,16 @@
+{
+  "name": "daily-hearth-status",
+  "owner": "arcis:bot:00000001",
+  "description": "Write a short observation of library and agent state each morning",
+  "trigger": {
+    "type": "schedule",
+    "cadence": "0 7 * * *"
+  },
+  "nodes": [
+    {
+      "id": "observe",
+      "type": "agent",
+      "task": "Summarize the current Catalog size, any unvalidated terms, and the last three observations. Write the summary as a new library entry tagged 'bot-status'."
+    }
+  ]
+}
