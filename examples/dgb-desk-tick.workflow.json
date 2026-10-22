@@ -3,18 +3,19 @@
   "description": "Paper tick of the S1/S5 DGB desk every 2 hours. PAPER ONLY.",
   "trigger": {
     "type": "schedule",
-    "every": "2h"
+    "cron": "0 0 */2 * * *",
+    "note": "Arcis CronSpec: second=0 minute=0 hour=every-2. Standalone: zig build routine -- --loop"
   },
   "steps": [
     {
       "id": "tick",
-      "action": "dgb_desk.tickOnce",
-      "note": "Calls the thin desk wrapper. Feed failure leaves ledgers untouched."
+      "action": "dgb_routine.runOnce",
+      "note": "Desk.tickOnce via LiveFeed. Feed failure leaves ledgers untouched and writes feed_fail.flag."
     },
     {
       "id": "observe",
-      "action": "library.writeObservation",
-      "note": "Records DGB score, USD total, mode, open lots, vault, any halt/park/unpark."
+      "action": "hearth.observations/dgb-desk.log",
+      "note": "Appends score, mode, fills, lots, and last events."
     }
   ]
 }

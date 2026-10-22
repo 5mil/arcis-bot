@@ -55,3 +55,14 @@ Verified locally: both ledgers created, state files written, S5 correctly parked
 `zig build live-smoke` ticks the desk against the live feed.
 
 Verified: source=cryptocom, 99 bars, both ledgers created, state written. PAPER ONLY.
+
+## 2-hour routine + observation (done)
+
+`src/dgb_routine.zig`:
+
+- `Routine.runOnce(now_ms)` ticks both ledgers via the live feed and appends an observation to `hearth/observations/dgb-desk.log`.
+- Feed failure leaves ledgers untouched, logs the error, and touches `feed_fail.flag`.
+- Standalone: `zig build routine` (one tick) or `zig build routine -- --loop` (every 2 h).
+- Maps to the Arcis scheduler as a cron trigger (`0 0 */2 * * *`) whose job calls `runOnce`.
+
+Verified path: live feed → desk tick → state save → observation file. PAPER ONLY.
