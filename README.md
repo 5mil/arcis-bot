@@ -35,6 +35,8 @@ cd arcis-bot
 - `tools/` — helper scripts
 
 ## Roadmap
+- [Phase 2 skeleton](docs/PHASE2.md) — enablement gate + live executor (disabled)
+
 - [Phase 1 status](docs/PHASE1.md) — paper desk wrapper + feed skeleton + routine
 
 
