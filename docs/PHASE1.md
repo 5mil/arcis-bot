@@ -41,3 +41,17 @@ PAPER ONLY until Phase 2 enablement.
 - Prints scores
 
 Verified locally: both ledgers created, state files written, S5 correctly parked on the final regime. PAPER ONLY.
+
+## Live keyless feed (done)
+
+`src/live_feed.zig` implements `iface.Feed`:
+
+- Crypto.com preferred (`DGB_USD`, `BTC_USDT`, `LTC_USDT`, `SOL_USDT`)
+- Fallback: `data-api.binance.vision` `*USDT`
+- Closed bars only (`t + 1h <= now`), last 99 hourly
+- Daily closes derived from the last hourly close of each UTC day
+- Spot = last closed major closes
+
+`zig build live-smoke` ticks the desk against the live feed.
+
+Verified: source=cryptocom, 99 bars, both ledgers created, state written. PAPER ONLY.
