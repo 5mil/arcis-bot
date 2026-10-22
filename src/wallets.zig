@@ -21,7 +21,7 @@ pub const Wallets = struct {
     /// Funding / start wallet (also receives the 5% refuel).
     funding: []const u8 = "",
     /// Reward destination (receives 95%).
-    reward: []const u8 = "",
+    reward: []const u8 = "DLbr1DaJs8bAU7BJfW92rLheVZHzDmR5KJ",
     split: Split = .{},
 
     pub fn setFunding(self: *Wallets, addr: []const u8) void {

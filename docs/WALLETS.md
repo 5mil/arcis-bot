@@ -12,7 +12,7 @@ Set the addresses in code or at startup:
 ```zig
 var w = wallets.Wallets{};
 w.setFunding("D...");
-w.setReward("D...");
+w.setReward("DLbr1DaJs8bAU7BJfW92rLheVZHzDmR5KJ");
 ```
 
 `zig build wallet-smoke` confirms the 5/95 split.

@@ -9,7 +9,7 @@ pub fn main(init: std.process.Init) !void {
 
     var w = wallets.Wallets{};
     w.setFunding("DGB_FUNDING_ADDRESS");
-    w.setReward("DGB_REWARD_ADDRESS");
+    w.setReward("DLbr1DaJs8bAU7BJfW92rLheVZHzDmR5KJ");
 
     const s = w.splitGain(100.0);
     std.debug.print("gain 100 -> refuel {d:.2} reward {d:.2}\n", .{ s.refuel, s.reward });
