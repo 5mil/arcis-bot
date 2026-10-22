@@ -34,6 +34,11 @@ cd arcis-bot
 - `src/` — thin Zig extensions that sit on top of the parent Arcis sources (includes `src/arcis-dgb/`, the DGB paper-trading engine)
 - `tools/` — helper scripts
 
+## Roadmap
+
+- [DGB desk roadmap](docs/ROADMAP.md) — paper bot → protected live auto-trade
+
+
 ## Status
 
 Scaffolding ready for both local and VPS hosts. The bot reuses Arcis subsystems; concrete Zig patches are documented so they can be applied inside a local checkout of the engine.
