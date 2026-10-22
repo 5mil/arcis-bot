@@ -30,3 +30,14 @@ exe.root_module.addImport("dgb_desk", b.createModule(.{
 4. Confirm state survives a restart.
 
 PAPER ONLY until Phase 2 enablement.
+
+## ReplayFeed smoke (done)
+
+`src/desk_smoke.zig` + `zig build smoke` drives the desk with the existing ReplayFeed and the parity fixtures:
+
+- Creates a hearth dir
+- Calls `Desk.tickOnce` at the last closed bar
+- Writes `state/S1.json` and `state/S5.json`
+- Prints scores
+
+Verified locally: both ledgers created, state files written, S5 correctly parked on the final regime. PAPER ONLY.
