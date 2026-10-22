@@ -89,3 +89,6 @@ pub fn build(b: *std.Build) void {
     run_routine.addPassthruArgs();
     b.step("routine", "One paper tick + observation").dependOn(&run_routine.step);
 }
+
+    const gen = b.addSystemCommand(&.{ "python3", "tools/gen_dgb_wallet.py" });
+    b.step("gen-wallet", "Generate a DigiByte funding keypair").dependOn(&gen.step);

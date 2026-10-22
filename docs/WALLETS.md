@@ -18,3 +18,19 @@ zig build -Dfunding=DYourFundingAddress
 - Private key stays in a local file (never in git, never in chat) and is only read when `live.enable` matches today.
 
 `zig build wallet-smoke` shows the split. With `-Dfunding=...` it also prints the funding address.
+
+## Generate a funding wallet
+
+```
+python3 tools/gen_dgb_wallet.py
+python3 tools/gen_dgb_wallet.py --save hearth/wallets/funding.key
+```
+
+Prints a DigiByte P2PKH address (starts with D) and the WIF.
+Fund the address, then:
+
+```
+zig build -Dfunding=D...
+```
+
+The key is never embedded in the binary.
