@@ -1,0 +1,20 @@
+{
+  "name": "dgb-desk-tick",
+  "description": "Paper tick of the S1/S5 DGB desk every 2 hours. PAPER ONLY.",
+  "trigger": {
+    "type": "schedule",
+    "every": "2h"
+  },
+  "steps": [
+    {
+      "id": "tick",
+      "action": "dgb_desk.tickOnce",
+      "note": "Calls the thin desk wrapper. Feed failure leaves ledgers untouched."
+    },
+    {
+      "id": "observe",
+      "action": "library.writeObservation",
+      "note": "Records DGB score, USD total, mode, open lots, vault, any halt/park/unpark."
+    }
+  ]
+}

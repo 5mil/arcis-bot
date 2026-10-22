@@ -35,6 +35,8 @@ cd arcis-bot
 - `tools/` — helper scripts
 
 ## Roadmap
+- [Phase 1 status](docs/PHASE1.md) — paper desk wrapper + feed skeleton + routine
+
 
 - [DGB desk roadmap](docs/ROADMAP.md) — paper bot → protected live auto-trade
 
