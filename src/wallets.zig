@@ -4,14 +4,16 @@
 //! funding wallet (to refuel trading). The remaining 95% is recorded as
 //! going to the reward wallet.
 //!
-//! PAPER ONLY. No chain sends. Addresses are public; keys stay in local
-//! files and are only read when the live gate is open.
+//! Funding address is supplied at build time for live mode:
+//!   zig build -Dfunding=D... 
+//! It is ignored in pure paper builds (empty default).
+//! Keys stay in local files and are only read when the live gate is open.
 const std = @import("std");
+const build_options = @import("build_options");
 
 pub const Split = struct {
     /// Fraction of realized gain returned to the funding wallet.
     refuel: f64 = 0.05,
-    /// Remainder goes to the reward wallet.
     pub fn reward(self: Split) f64 {
         return 1.0 - self.refuel;
     }
@@ -19,7 +21,8 @@ pub const Split = struct {
 
 pub const Wallets = struct {
     /// Funding / start wallet (also receives the 5% refuel).
-    funding: []const u8 = "",
+    /// Comes from -Dfunding when building for live mode.
+    funding: []const u8 = build_options.funding,
     /// Reward destination (receives 95%).
     reward: []const u8 = "DLbr1DaJs8bAU7BJfW92rLheVZHzDmR5KJ",
     split: Split = .{},
@@ -29,6 +32,11 @@ pub const Wallets = struct {
     }
     pub fn setReward(self: *Wallets, addr: []const u8) void {
         self.reward = addr;
+    }
+
+    /// True when a funding address was supplied at build time.
+    pub fn hasFunding(self: Wallets) bool {
+        return self.funding.len > 0;
     }
 
     /// Split a realized USD gain. Returns (refuel_usd, reward_usd).

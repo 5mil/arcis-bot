@@ -2,6 +2,9 @@ const std = @import("std");
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
+    const funding = b.option([]const u8, "funding", "Funding DGB address (live mode only)") orelse "";
+    const options = b.addOptions();
+    options.addOption([]const u8, "funding", funding);
     const dgb_mod = b.createModule(.{
         .root_source_file = b.path("src/arcis-dgb/src/root.zig"),
         .target = target,
@@ -39,6 +42,7 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
+    wallets_mod.addOptions("build_options", options);
     const routine_mod = b.createModule(.{
         .root_source_file = b.path("src/dgb_routine.zig"),
         .target = target,
