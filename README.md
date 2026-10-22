@@ -35,6 +35,8 @@ cd arcis-bot
 - `tools/` — helper scripts
 
 ## Roadmap
+- [Wallets](docs/WALLETS.md) — 5% refuel / 95% reward split (paper)
+
 - [Phase 2 skeleton](docs/PHASE2.md) — enablement gate + live executor (disabled)
 
 - [Phase 1 status](docs/PHASE1.md) — paper desk wrapper + feed skeleton + routine

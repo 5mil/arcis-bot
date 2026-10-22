@@ -33,6 +33,12 @@ pub fn build(b: *std.Build) void {
             .{ .name = "live_gate", .module = gate_mod },
         },
     });
+    
+    const wallets_mod = b.createModule(.{
+        .root_source_file = b.path("src/wallets.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
     const routine_mod = b.createModule(.{
         .root_source_file = b.path("src/dgb_routine.zig"),
         .target = target,
@@ -48,6 +54,7 @@ pub fn build(b: *std.Build) void {
         .{ "desk_smoke", "src/desk_smoke.zig", "smoke", "ReplayFeed desk smoke" },
         .{ "live_smoke", "src/live_smoke.zig", "live-smoke", "Live feed + desk tick" },
         .{ "gate_smoke", "src/gate_smoke.zig", "gate-smoke", "Confirm live gate closed" },
+        .{ "wallet_smoke", "src/wallet_smoke.zig", "wallet-smoke", "5/95 reward split" },
     }) |spec| {
         const exe = b.addExecutable(.{
             .name = spec[0],
@@ -61,6 +68,7 @@ pub fn build(b: *std.Build) void {
                     .{ .name = "live_feed", .module = live_mod },
                     .{ .name = "live_gate", .module = gate_mod },
                     .{ .name = "live_executor", .module = exec_mod },
+                    .{ .name = "wallets", .module = wallets_mod },
                 },
             }),
         });
