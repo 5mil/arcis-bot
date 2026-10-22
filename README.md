@@ -31,7 +31,7 @@ cd arcis-bot
 - `docs/` — setup (PC + VPS), philosophy alignment, and extension notes
 - `deploy/systemd/` — unit file for the bot daemon
 - `examples/` — starter workflows and agent role definitions
-- `src/` — thin Zig extensions that sit on top of the parent Arcis sources
+- `src/` — thin Zig extensions that sit on top of the parent Arcis sources (includes `src/arcis-dgb/`, the DGB paper-trading engine)
 - `tools/` — helper scripts
 
 ## Status
